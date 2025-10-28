@@ -1,0 +1,10 @@
+services:
+  prod:
+    container_name: nextjs-bun-app
+    image: nextjs-bun-app
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    ports:
+      - 31033:3000
+    restart: unless-stopped

@@ -1,0 +1,108 @@
+[
+    {
+        "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16046034/2022-05-01/2022-05-01",
+        "@type": [
+            "http://linkeddata.overheid.nl/terms/Artikel"
+        ],
+        "http://linkeddata.overheid.nl/terms/heeftInwerkingtredingsdatum": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#date",
+                "@value": "2022-05-01"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/isOnderdeelVan": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045024/2022-05-01/2022-05-01"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/isOnderdeelVanRegeling": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045964/2024-08-01/2024-08-01"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/isOnderdeelVanTC": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16046034/2022-05-01/2022-05-01"
+            },
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045964/2024-08-01/2024-08-01"
+            },
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045024/2022-05-01/2022-05-01"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/volgendeOnderdeel": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045004/2022-05-01/2022-05-01"
+            }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+            {
+                "@value": "Wet open overheid, Artikel 3.3b"
+            }
+        ]
+    },
+    {
+        "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045964/2024-08-01/2024-08-01",
+        "@type": [
+            "http://linkeddata.overheid.nl/terms/Wet"
+        ],
+        "http://linkeddata.overheid.nl/terms/geimporteerdDoor": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/import/id/bwb-2024-08-01"
+            },
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/import/id/bwb-2024-08-02"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/heeftBWBId": [
+            {
+                "@value": "BWBR0045754"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/heeftBron": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bron/id/bwb"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/heeftInwerkingtredingsdatum": [
+            {
+                "@type": "http://www.w3.org/2001/XMLSchema#date",
+                "@value": "2024-08-01"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/isOnderdeelVanRegeling": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045964/2024-08-01/2024-08-01"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/isOnderdeelVanRegelingType": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/Wet"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/isOnderdeelVanTC": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/bwb/id/BWBR0045754/16045964/2024-08-01/2024-08-01"
+            }
+        ],
+        "http://linkeddata.overheid.nl/terms/linkt": [
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/oep/id/stb-2024-109"
+            },
+            {
+                "@id": "http://linkeddata.overheid.nl/terms/oep/id/stb-2024-154"
+            }
+        ],
+        "http://www.w3.org/2004/02/skos/core#altLabel": [
+            {
+                "@value": "Woo"
+            }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+            {
+                "@value": "Wet open overheid"
+            }
+        ]
+    }
+]
