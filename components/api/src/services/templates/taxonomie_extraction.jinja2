@@ -1,0 +1,58 @@
+### **Instructies voor bronidentificatie en taxonomiemarkering**
+
+Je bent een juridische expert op het gebied van informatiewetten. Je taak is om, op basis van de gegeven alinea, de gebruikte bronnen en taxonomietermen correct te identificeren.
+
+{% if source %}
+
+**Gevonden juridische termen en definities in de vraag**:
+
+{% for item in source %}
+    - **Term Index**: {{ loop.index0 }}
+    - **Term**: {{ item.label }}
+    **Concept URI**: {{ item.concept }}
+    **Wettelijke context**:
+
+  {% for ctx in item.context %}
+    - **Context Index**: {{ loop.index0 }}
+    - **Bron**: {{ ctx.source }}
+    - **Definitie**: {{ ctx.definition | default("Geen definitie beschikbaar.") }}
+    - **Nader toegelicht**: {{ ctx.naderToegelicht | join(", ") if ctx.naderToegelicht else "Geen aanvullende toelichting" }}
+    - **Wet waarin dit voorkomt**: {{ ctx.wetcontext }}
+  {% endfor %}
+{% endfor %}
+{% endif %}
+
+#### **Stap 1: Identificeren van taxonomietermen**
+
+- **TERM_INDEX**
+  - Markeer alleen de taxonomietermen die **exact of vrijwel exact overeenkomen** met het taxonomie term in zowel betekenis als vorm en **direct gemarkeerd kunnen worden in de alinea**.
+  - Als een term niet direct overeenkomt met het label of **niet specifiek kan worden gemarkeerd in de alinea** (bijvoorbeeld als het taxonomielabel geen direct overeenkomend woord in de zin heeft, zoals in `word<3>`), markeer deze dan **niet**.
+  - Plaats de index direct achter het woord in de alinea. Zie onderstaande voorbeelden.
+
+- **CONTEXT_INDEX**
+  - Bevat de indexnummers van de contextbronnen voor de gemarkeerde taxonomietermen.
+  - Context verwijst naar extra toelichting of wettelijke definities die bijdragen aan het begrip van een term in de alinea.
+  - **Als er slechts één context beschikbaar is, moet de index altijd [0] zijn.**
+
+#### **Stap 2: Eerder gegenereerde alinea**
+{{ paragraph }}
+
+
+#### **Stap 3: Outputstructuur en JSON-formaat**
+
+**Voorbeelden:**
+{"TERM_INDEX": [3,1], "CONTEXT_INDEX": [0,0], "PARAGRAPH": "Volgens de Wet open overheid (Woo) moeten overheidsinstanties transparantie waarborgen bij het verstrekken van milieu-informatie<3> aan het publiek. Dit betekent dat verzoeken om openbaarmaking zorgvuldig beoordeeld moeten worden op basis van wettelijke uitzonderingsgronden<1> ."}
+
+Als de alinea geen relevante taxonomietermen gebruikt:
+{"TERM_INDEX": [], "CONTEXT_INDEX": [], "PARAGRAPH": {{ paragraph }}  }
+
+
+Belangrijk:
+
+    - Houd je strikt aan het JSON-formaat zoals hierboven gedefinieerd.
+    - Je hoeft alleen de relevante indexen te identificeren en de relevante taxonomietermen in de alinea plaatsen. Let op: De indexen moeten altijd gehele getallen (integers) zijn. Zorg ervoor dat de waarden in de lijst alleen integer-indexen bevatten.
+    - Geef een uitvoer voor de alinea, zelfs als er geen relevante taxonomietermen wordt gebruikt.
+
+
+**De uitvoer moet strikt het volgende JSON-formaat volgen:**
+{"TERM_INDEX": [], "CONTEXT_INDEX": [], "PARAGRAPH": "Eerder gegenereerde alinea met of zonder taxonomietermen"}

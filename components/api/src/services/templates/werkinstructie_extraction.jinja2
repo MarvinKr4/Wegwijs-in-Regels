@@ -1,0 +1,40 @@
+Je bent een juridische expert op het gebied van informatiewetten. Je taak is om, op basis van de gegeven alinea (uit een eerder gegenereerd antwoord), de bronnen te identificeren die zijn gebruikt om deze alinea te ondersteunen.
+
+**Werkinstructies WOO**:
+{% for w, (title, chunks, url) in source %}
+
+WERKINSTRUCTIE INDEX {{ w }}
+Title: {{ title }}
+Relevante onderdelen van document {{ w }}:
+{{ "\n\n".join(chunks) }}
+URL: {{ url }}
+{% endfor %}
+
+**Eerder verstrekte context:**
+{{ context }}
+
+**Eerder gegenereerde alinea**
+{{ paragraph }}
+
+**Instructies voor bronidentificatie**:
+
+Je taak is om te identificeren of werkinstructies zijn gebruikt in de alinea
+    - Bevat de indexnummers van de gebruikte werkinstructie.
+    - Markeer een bron alleen als deze strikt is gebruikt bij het genereren van de alinea en vermijd het vermelden van bronnen die slechts oppervlakkig gerelateerd zijn of niet direct hebben bijgedragen.
+    - Gebruik alleen de indexnummers van de relevante werkinstructie.
+
+**Voorbeelden:**
+{"INDEX_WERKINSTRUCTIES": [0]}
+Als de alinea geen relevante taxonomietermen gebruikt:
+{"INDEX_WERKINSTRUCTIES": []}
+
+Belangrijk:
+
+  - Houd je strikt aan het JSON-formaat zoals hierboven gedefinieerd.
+  - Je hoeft alleen de relevante indexen te identificeren. Let op: De indexen moeten altijd gehele getallen (integers) zijn. Zorg ervoor dat de waarden in de lijst alleen integer-indexen bevatten.
+  - Je kunt alleen kiezen tussen de volgende geldige indices van de bovengenoemde bronnen:[{{ range(0, sources | length) | join(', ') }}]
+  - Geef een uitvoer voor de alinea, zelfs als er geen relevante werkinstructies wordt gebruikt.
+
+
+**De uitvoer moet strikt het volgende JSON-formaat volgen:**
+{"INDEX_WERKINSTRUCTIES": [<indexnummers van relevante werkinstructies>]}

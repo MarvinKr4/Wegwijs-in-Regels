@@ -1,0 +1,194 @@
+Je bent een juridische expert op het gebied van informatiewetten. Je taak is om, op basis van de gegeven alinea (uit een eerder gegenereerd antwoord), de bronnen te identificeren die zijn gebruikt om deze alinea te ondersteunen.
+
+**Wetartikelen en bijbehorende kennisgrafen**:
+{% for i, (doc, title, law, url, uri, lido, jas) in sources %}
+
+INDEX {{ i }}
+Wet: {{ law }}
+Article: {{ title }}
+Article tekst: {{ doc }}
+Relevante onderdelen van document {{ i }}:
+URL: {{ url }}
+
+**Gerelateerde wet- en regelgeving (LIDO) kennisgraf voor document {{ i }}:**
+{% if lido %}
+{
+    "subject": "{{ uri }}",
+    "triplets": [
+        {% for binding in lido['results']['bindings'] %}
+        {
+            "predicate": "{{ binding.predicate.value }}",
+            "object": {
+                "type": "{{ binding.object.type }}",
+                "value": "{{ binding.object.value }}"
+                {% if binding.object.datatype is defined %},
+                "datatype": "{{ binding.object.datatype }}"
+                {% endif %}
+            }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+{% else %}
+Geen aanvullende informatie gevonden.
+{% endif %}
+
+**Relevante entiteiten en relaties van de kennisgraf Juridisch Analyse Schema (JAS) voor document {{ i }}:**
+{% if jas %}
+    {% if jas.message %}
+        Geen aanvullende informatie gevonden voor deze wet URI: {{ jas.message }}
+    {% else %}
+        **Relevante entiteiten en relaties (JAS) voor document {{ i }}:**
+        {% for binding in jas.results.bindings %}
+            - **Subject**: {{ binding.subject.value }}
+            - **Predicate**: {{ binding.predicate.value }}
+            - **Object**: {{ binding.object.value }}
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+-----------------------------------
+{% endfor %}
+
+**Jurisprudentie en bijbehorende kennisgrafen**:
+{% for y, (title, chunks, inhoudsindicatie, uitspraak, nummer, url, lido) in case_law_sources %}
+
+JURISPRUDENTIE INDEX {{ y }}
+Jurisprudentie Title: {{ title }}
+Relevante onderdelen van document {{ i }}:
+{{ "\n\n".join(chunks) }}
+Jurisprudentie inhoudsindicatie: {{ inhoudsindicatie }}:
+Jurisprudentie uitspraak: {{ uitspraak }}
+Jurisprudentie nummer: {{ nummer }}
+URL: {{ url }}
+
+**Gerelateerde wet- en regelgeving (LIDO) kennisgraf voor jurisprudentie {{ y }}:**
+
+{% if not lido or lido == "" %}
+Geen aanvullende informatie gevonden.
+{% else %}
+{
+    "subject": "{{ uri }}",
+    "triplets": [
+        {% for binding in lido['results']['bindings'] %}
+        {
+            "predicate": "{{ binding.predicate.value }}",
+            "object": {
+                "type": "{{ binding.object.type }}",
+                "value": "{{ binding.object.value }}"
+                {% if binding.object.datatype is defined %},
+                "datatype": "{{ binding.object.datatype }}"
+                {% endif %}
+            }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+{% endif %}
+
+-----------------------------------
+{% endfor %}
+
+**Werkinstructies WOO**:
+{% for w, (title, chunks, url) in werkinstructies %}
+
+WERKINSTRUCTIE INDEX {{ w }}
+Title: {{ title }}
+Relevante onderdelen van document {{ w }}:
+{{ "\n\n".join(chunks) }}
+URL: {{ url }}
+{% endfor %}
+
+{% if selectielijsten %}
+**Selectielijsten (Bewaartermijnen en opslagregels):**
+{% for rule in selectielijsten %}
+- **Index**: {{ loop.index0 }}
+  **Functie**: {{ rule.get("functie", "Onbekend") }}
+  **Categorie**: {{ rule.get("categorie", "Onbekend") }}
+  **Onderwerp**: {{ rule.get("onderwerp", "Onbekend") }}
+  **Omschrijving**: {{ rule.get("omschrijving", "Geen beschrijving beschikbaar.") }}
+  **Waardering**:
+    {% if rule.get("waardering", "").startswith("B") %}
+      Dit document moet voor altijd bewaard blijven.
+    {% else %}
+      {{ rule.get("waardering", "Niet gespecificeerd.") }}
+    {% endif %}
+  **Voorbeeldstukken**: {{ rule.get("voorbeeldstukken", "Geen voorbeeldstukken beschikbaar.") }}
+{% endfor %}
+{% endif %}
+
+{% if taxonomy %}
+**Gevonden juridische termen en definities in de vraag**:
+{% for item in taxonomy %}
+- **Term Index**: {{ loop.index0 }}
+- **Term**: {{ item.label }}
+  **Concept URI**: {{ item.concept }}
+  **Wettelijke context**:
+  {% for ctx in item.context %}
+    - **Context Index**: {{ loop.index0 }}
+    - **Bron**: {{ ctx.source }}
+    - **Definitie**: {{ ctx.definition | default("Geen definitie beschikbaar.") }}
+    - **Nader toegelicht**: {{ ctx.naderToegelicht | join(", ") if ctx.naderToegelicht else "Geen aanvullende toelichting" }}
+    - **Wet waarin dit voorkomt**: {{ ctx.wetcontext }}
+  {% endfor %}
+{% endfor %}
+{% endif %}
+
+
+**Eerder verstrekte context:**
+{{ context }}
+
+**Eerder gegenereerde alinea**
+{{ paragraph }}
+
+**Instructies voor bronidentificatie en taxonomiemarkering**:
+
+Je taak is om de gebruikte bronnen te identificeren voor de gegeven alinea en deze correct te labelen volgens het juiste type bron.
+1. Identificeren van bronnen per categorie
+
+    INDEX_WETTEN:
+        - Bevat de indexnummers van de gebruikte wetten.
+        - Noem alleen de wetten waarvan duidelijk is dat ze inhoudelijk bijdragen aan de alinea.
+
+    INDEX_JURISPRUDENTIE:
+        - Bevat de indexnummers van jurisprudentie die in de alinea wordt genoemd of waarop de inhoud is gebaseerd.
+        - Een uitspraak wordt als bron gebruikt als een rechtsregel of toepassing uit een zaak direct of indirect in de alinea is verwerkt.
+
+    INDEX_WERKINSTRUCTIES:
+        - Bevat de indexnummers van werkinstructies als de alinea deze gebruikt als bron.
+        - Een werkinstructie is gebruikt als er expliciet naar richtlijnen, ambtelijke procedures of uitvoeringsregels wordt verwezen.
+        - Als er slechts één werkinstructie beschikbaar is, moet de index altijd [0] zijn.
+
+    INDEX_SELECTIELIJSTEN:
+        - Bevat de indexnummers van gebruikte selectielijsten (bijvoorbeeld over bewaartermijnen en opslagregels).
+        - Vermeld alleen selectielijsten als de alinea specifiek ingaat op bewaarplicht, archivering of verwijdering van documenten.
+
+2. Markeren van taxonomietermen
+
+    TAXONOMIE.TERM_INDEX
+        - Markeer uitsluitend de taxonomietermen die  exact of vrijwel exact overeenkomen met het taxonomielabel in zowel betekenis als vorm. Als een term niet zeer goed overeenkomt met het label, markeer deze dan niet.
+        - Markeer de term in de alinea met <index> direct achter het woord. Bijvoorbeeld: als "persoonsgegevens" een taxonomieterm is met index 3, dan moet het in de alinea staan als: "persoonsgegevens<3>".
+
+    TAXONOMIE.CONTEXT_INDEX
+        - Bevat de indexnummers van de contextbronnen voor de gebruikte taxonomietermen.
+        - Context verwijst naar extra toelichting of wettelijke definities die bijdragen aan het begrip van een term in de alinea.
+        - Als er slechts één context beschikbaar is, moet de index altijd [0] zijn.
+
+BELANGRIJK!!!:
+
+        - Gebruik geen markering (<index>) voor wetten, jurisprudentie of werkinstructies. Alleen taxonomietermen mogen gemarkeerd worden met een index. Wetten, jurisprudentie en werkinstructies moeten zonder enige markering in de tekst blijven.
+        - Verander geen woorden in de originele alinea—alleen de taxonomietermen mogen gemarkeerd worden met de juiste index. De rest van de tekst, inclusief verwijzingen naar wetten en jurisprudentie, moet in zijn oorspronkelijke vorm blijven.
+
+
+De uitvoer moet strikt het onderstaande formaat volgen:
+{
+  "INDEX_WETTEN": [],
+  "INDEX_JURISPRUDENTIE": [],
+  "INDEX_WERKINSTRUCTIES": [],
+  "INDEX_SELECTIELIJSTEN": [],
+  "TAXONOMIE": {
+    "TERM_INDEX": [],
+    "CONTEXT_INDEX": []
+  },
+  "PARAGRAPH": "De originele paragraph met gemarkeerde taxonomietermen (bijvoorbeeld persoonsgegevens<3>)"
+}

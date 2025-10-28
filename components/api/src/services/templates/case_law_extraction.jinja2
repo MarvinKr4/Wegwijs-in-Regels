@@ -1,0 +1,71 @@
+Je bent een juridische expert op het gebied van informatiewetten. Je taak is om, op basis van de gegeven alinea (uit een eerder gegenereerd antwoord), de bronnen te identificeren die zijn gebruikt om deze alinea te ondersteunen.
+
+**Jurisprudentie en bijbehorende kennisgrafen**:
+{% for y, (title, chunks, inhoudsindicatie, uitspraak, nummer, url, lido) in source %}
+
+INDEX {{ y }}
+Jurisprudentie Title: {{ title }}
+Relevante onderdelen van document {{ y }}:
+{{ "\n\n".join(chunks) }}
+Jurisprudentie inhoudsindicatie: {{ inhoudsindicatie }}:
+Jurisprudentie uitspraak: {{ uitspraak }}
+Jurisprudentie nummer: {{ nummer }}
+URL: {{ url }}
+
+**Gerelateerde wet- en regelgeving (LIDO) kennisgraf voor jurisprudentie {{ y }}:**
+
+{% if not lido or lido == "" %}
+Geen aanvullende informatie gevonden.
+{% else %}
+{
+    "subject": "{{ uri }}",
+    "triplets": [
+        {% for binding in lido['results']['bindings'] %}
+        {
+            "predicate": "{{ binding.predicate.value }}",
+            "object": {
+                "type": "{{ binding.object.type }}",
+                "value": "{{ binding.object.value }}"
+                {% if binding.object.datatype is defined %},
+                "datatype": "{{ binding.object.datatype }}"
+                {% endif %}
+            }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+{% endif %}
+
+-----------------------------------
+{% endfor %}
+
+**Eerder verstrekte context:**
+{{ context }}
+
+**Eerder gegenereerde alinea**
+{{ paragraph }}
+
+
+**Instructies voor bronidentificatie**:
+
+Je taak is om te identificeren of jurisprudentie zijn gebruikt in de alinea
+    - Bevat de indexnummers van de gebruikte jurisprudentie (van INDEX {{ y }}). Je kunt alleen kiezen tussen de volgende geldige indices van de bovengenoemde bronnen:
+    [{{ range(0, sources | length) | join(', ') }}]
+    - Markeer een bron alleen als deze strikt is gebruikt bij het genereren van de alinea en vermijd het vermelden van bronnen die slechts oppervlakkig gerelateerd zijn of niet direct hebben bijgedragen.
+    - Gebruik alleen de indexnummers van de relevante jurisprudentie. Let op: De indexen moeten altijd gehele getallen (integers) zijn. Zorg ervoor dat de waarden in de lijst alleen integer-indexen bevatten.
+
+**Voorbeelden:**
+Als de alinea jurisprudentie met index 0 en 1 gebruikt:
+{"INDEX_JURISPRUDENTIE": [0, 1]}
+Als de alinea geen relevante jurisprudentie gebruikt:
+{"INDEX_JURISPRUDENTIE": []}
+
+Belangrijk:
+
+    - Houd je strikt aan het JSON-formaat zoals hierboven gedefinieerd.
+    - Je hoeft alleen de relevante indexen te identificeren.
+    - Geef een uitvoer voor de alinea, zelfs als er geen relevante jurisprudentie wordt gebruikt.
+
+
+**De uitvoer moet strikt het volgende JSON-formaat volgen:**
+{"INDEX_JURISPRUDENTIE": [<indexnummers van relevante jurisprudentie>]}
