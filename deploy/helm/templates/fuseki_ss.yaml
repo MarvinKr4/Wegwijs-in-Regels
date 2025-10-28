@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: fuseki
+  labels:
+    {{- include "wegwijs.labels" . | nindent 4 }}
+spec:
+  volumeClaimTemplates:
+    - metadata:
+        {{- if not .Values.skaffold }}
+        annotations:
+          helm.sh/resource-policy: keep
+        {{- end }}
+        name: fuseki-pvc
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        {{- if not .Values.skaffold }}
+        storageClassName: default
+        {{- else }}
+        storageClassName: local-storage
+        {{- end }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: fuseki
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: fuseki
+        {{- include "wegwijs.labels" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: config
+          configMap:
+            name: fuseki-config
+      containers:
+        - name: fuseki
+          image: "{{ .Values.fuseki.image.repository }}:{{ .Values.fuseki.image.tag }}"
+          imagePullPolicy: {{ .Values.fuseki.image.pullPolicy }}
+          securityContext:
+            runAsUser: 0
+            readOnlyRootFilesystem: false
+          ports:
+            - name: http
+              containerPort: 3030
+              protocol: TCP
+          volumeMounts:
+            - name: config
+              subPath: config.ttl
+              mountPath: /fuseki/config.ttl
+            - name: fuseki-pvc
+              mountPath: /fuseki
+            - name: config
+              subPath: shiro.ini
+              mountPath: /fuseki/shiro.ini
+          livenessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            httpGet:
+              path: /$/ping
+              port: 3030
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 20
+            httpGet:
+              path: /$/ping
+              port: 3030

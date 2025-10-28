@@ -1,0 +1,15 @@
+{{- if .Values.skaffold }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: fuseki-pv
+spec:
+  storageClassName: local-storage
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Delete
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/fuseki-pv-data"
+{{- end }}

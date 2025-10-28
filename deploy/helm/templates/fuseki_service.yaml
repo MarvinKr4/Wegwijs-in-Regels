@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fuseki-service
+  labels:
+    {{- include "wegwijs.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3030
+      targetPort: http
+      protocol: TCP
+      name: http5k
+  selector:
+    app.kubernetes.io/component: fuseki

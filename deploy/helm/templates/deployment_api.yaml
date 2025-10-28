@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "wegwijs.fullname" . }}-api
+  labels:
+    {{- include "wegwijs.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: api
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: api
+        {{- include "wegwijs.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: default
+      containers:
+        - name: {{ .Chart.Name }}-api
+          image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag | default .Chart.AppVersion }}"
+          command: ["python", "main.py"]
+          imagePullPolicy: {{ .Values.api.image.pullPolicy }}
+          env:
+            - name: GPT_DEPLOYMENT_NAME
+              value: {{ $.Values.api.llm.gpt.deploymentName | quote }}
+            - name: GPT_API_VERSION
+              value: {{ $.Values.api.llm.gpt.apiVersion | quote }}
+            - name: GPT_ENDPOINT
+              value: {{ $.Values.api.llm.gpt.endpoint | quote }}
+            - name: GPT_API_KEY
+              value: {{ $.Values.api.llm.gpt.apiKey | quote }}
+            - name: EMBEDDINGS_MODEL_NAME
+              value: {{ $.Values.api.llm.embeddings.modelName | quote }}
+            - name: EMBEDDINGS_API_VERSION
+              value: {{ $.Values.api.llm.embeddings.apiVersion | quote }}
+            - name: EMBEDDINGS_ENDPOINT
+              value: {{ $.Values.api.llm.embeddings.endpoint | quote }}
+            - name: EMBEDDINGS_API_KEY
+              value: {{ $.Values.api.llm.gpt.embeddingsKey | quote }}
+            - name: AZURE_STORAGE_CONNECTION_STRING
+              value: {{ $.Values.api.storage.storgeAccountConnectionString | quote }}
+            - name: LOCAL_STORAGE
+              value: {{ $.Values.api.ingest.fromLocal | quote }}
+            {{- range .Values.api.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /system/health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /system/health
+              port: http
