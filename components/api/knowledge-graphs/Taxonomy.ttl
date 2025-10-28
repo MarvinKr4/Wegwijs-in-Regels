@@ -1,0 +1,723 @@
+@prefix beg-sbb: <http://begrippen.nlbegrip.nl/sbb/id/concept/> .
+@prefix begkr-sbb: <http://begrippen.nlbegrip.nl/id/begrippenkader/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix lido: <http://linkeddata.overheid.nl/terms/bwb/id#> .
+@prefix eurlex: <https://eur-lex.europa.eu/eli#> .
+
+@prefix wir: <http://www.koopoverheid.nl/WegwijsinRegels#> .        #nog overleggen met KOOP of zij beheer kunnen voorzien
+
+
+wir:naderToegelicht
+    a skos:concept ;
+    rdfs:label "wordt nader toegelicht in" ;
+    skos:definition "Een begrip wordt nader toegelicht in een ander lid, artikel of andere wet" .
+
+wir:wetcontext
+    a skos:concept ;
+    rdfs:label "is context van wet" ;
+    skos:definition "Een begrip of regeling moet gebruikt worden in de context van een specifieke wet" .
+
+
+wir:context 
+    a skos:concept ;
+    rdfs:label "context" ;
+    skos:definition "context van een woord wat de definitie bepaald" .
+
+
+wir:opGrondVan
+    a skos:concept ;
+    rdfs:label "Op grond van" ;
+    skos:definition "Een artikel stelt een voorwaarde, verplichting of verbod op grond van het verwezen artikel" .
+
+
+
+
+
+
+
+
+
+wir:document 
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Document" ;
+    beg-sbb:Definition 
+        "Een door een orgaan, persoon of college als bedoeld in artikel 2.2, eerste lid, opgemaakt of ontvangen schriftelijk stuk of ander geheel van vastgelegde gegevens dat naar zijn aard verband houdt met de publieke taak van dat orgaan, die persoon of dat college."@nl ;
+    beg-sbb:Source lido:BWBR0045754%2F16044914%2F2022-05-01%2F2022-05-01 ;        #artikel 2.1 woo
+    wir:naderToegelicht lido:BWBR0045754%2F16044924%2F2022-05-01%2F2022-05-01 .    #artikel 2.2 woo
+
+
+wir:milieuinformatie
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Milieu-informatie" ;
+    beg-sbb:Definition 
+        "hetgeen daaronder wordt verstaan in artikel 19.1a van de Wet milieubeheer" ;
+    beg-sbb:Source lido:BWBR0045754%2F16044914%2F2022-05-01%2F2022-05-01 ;    #artikel 2.1 woo
+    wir:naderToegelicht lido:BWBR0003245%2F6225104%2F2022-05-01%2F2022-05-01 . #artikel 19.1a wet mileeubeheer
+
+
+wir:publiekeinfo
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Publieke informatie" ;
+    beg-sbb:Definition
+        "informatie neergelegd in documenten die berusten bij een orgaan, persoon of college als bedoeld in artikel 2.2, eerste lid, of informatie die krachtens artikel 2.3 door een bestuursorgaan kan worden gevorderd." ;
+    beg-sbb:Source lido:BWBR0045754%2F16044914%2F2022-05-01%2F2022-05-01 ;            #artikel 2.1 woo
+    wir:naderToegelicht lido:BWBR0045754%2F16044924%2F2022-05-01%2F2022-05-01 ,       #artikel 2.2 woo
+                        wir:document,
+                        wir:bestuursorgaan .       
+
+
+wir:bestuursorgaan
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Bestuursorgaan" ;
+    beg-sbb:Definition 
+        "Een orgaan van een rechtspersoon die krachtens publiekrechts is ingesteld of een ander persoon of college, met enig openbaar gezag bekleed" ;
+    beg-sbb:Source lido:BWBR0005537%2F2813914%2F2020-01-01%2F2020-01-01 .              #artikel 1.1 AWB
+
+
+
+wir:zorgplicht
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Zorgplicht" ;
+    wir:context [ wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 ;          #wet open overheid
+                  beg-sbb:Definition "Een bestuursorgaan draagt er zorg voor dat de documenten die het ontvangt, vervaardigt of anderszins onder zich heeft, zich in goed, geordende en toegankelijke staat bevinden." ;
+                  beg-sbb:ScopeNote "Een bestuursorgaan draagt er zoveel mogelijk zorg voor dat de informatie die het overeenkomstig deze wet verstrekt, actueel, nauwkeurig en vergelijkbaar is." ;
+                  beg-sbb:Source lido:BWBR0045754%2F16044944%2F2024-06-19%2F2024-06-19          #artikel 2.4 woo 
+                ] ,
+                [ wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 ;           #archiefwet1995
+                  beg-sbb:Definition "Zorgdragers moeten de archiefbescheiden die onder hen berusten, in goede, geordende en toegankelijke staat brengen en bewaren." ;
+                  beg-sbb:ScopeNote "Ook zijn zorgdragers verplicht om zorg te dragen voor de vernietiging van de archiefbescheiden die daarvoor in aanmerking komen" ;
+                  beg-sbb:Source lido:BWBR0007376%2F1214364%2F1996-01-01%2F1996-01-01            #artikel 3 archiefwet
+                ] .
+   
+
+
+wir:zorgdrager 
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Zorgdrager" ;
+    wir:context [ wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 ;          #wet open overheid
+                  beg-sbb:Definition "Een orgaan van een rechtpersoon die krachtens publiekrecht is ingesteld of een aner person of college, met enig openbaar gezag bekleed." ;
+                  beg-sbb:Source lido:BWBR0005537%2F2813914%2F2020-01-01%2F2020-01-01 ;           #Algemene wet bestuursrecht, Artikel 1:1
+                ],
+                [ wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 ;           #archiefwet1995
+                  beg-sbb:Definition "Functionaris of organisatie belast met archiefzorg." ;
+                ] .
+
+
+
+wir:toegankelijkewijze
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Toegankelijke wijze" ;
+    beg-sbb:Definition 
+        "Het openbaar maken van informatie overenkomstig deze wet op zodanige wijze dat: de belanghebbende en belangstellende burger zoveel mogelijk wordt bereikt; de vorm voor het hergebruik beschikbaar is; of in andere electronische vorm, of door verstrekking van een kopie of door een uittreksel of samenvatting van de inhoud te geven." ;
+    wir:naderToegelicht wir:openbaarmaking ;
+    beg-sbb:Source lido:BWBR0045754%2F16044944%2F2024-06-19%2F2024-06-19 .         #artikel 2.4 woo 
+
+
+
+wir:openbaarmaking
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Openbaarmaking" ;
+    beg-sbb:Definition 
+        "Een bestuursorgaan zorgt ervoor dat de documenten die het ontvangt, vervaardigt of anderszins onder zich heeft, zich in goede, geordende en toegankelijke staat bevinden" ;
+    beg-sbb:Source lido:BWBR0045754%2F16044944%2F2024-06-19%2F2024-06-19 ;        #artikel 2.4 woo
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 ;
+    wir:naderToegelicht wir:bestuursorgaan ;
+    wir:naderToegelicht wir:document ;
+    beg-sbb:NarrowerGeneric wir:actiefopen ;
+    beg-sbb:NarrowerGeneric wir:verzoekopen .
+
+
+wir:actiefopen
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Actieve openbaarmaking" ;
+    beg-sbb:Definition
+        "Het uit eigen beweging de bij het bestuursorgaan berustende informatie neergelegd in documenten voor eenieder openbaar maken" ;
+    beg-sbb:Source lido:BWBR0045754%2F16044974%2F2022-05-01%2F2022-05-01 ;        #artikel 3.1 woo
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 ;        #wet open overheid
+    wir:naderToegelicht wir:bestuursorgaan ;
+    wir:naderToegelicht wir:document ;
+    beg-sbb:BroaderGeneric wir:openbaarmaking .
+
+
+
+wir:catinfo
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Categorieën informatie" ;
+    beg-sbb:Definition
+        "De in deze wet beschreven informatie die actief openbaar moet worden gemaakt door een bestuursorgaan" ;
+    beg-sbb:Source lido:BWBR0045754%2F16044994%2F2022-05-01%2F2022-05-01 ;        #artikel 3.3 woo
+    wir:naderToegelicht wir:bestuursorgaan ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+
+wir:verzoekopen
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Openbaarmaking op verzoek" ;
+    beg-sbb:Definition
+        "Het op verzoek openbaar maken van publieke informatie door een bestuursorgaan" ;
+    beg-sbb:Source lido:BWBR0045754%2F16045034%2F2022-05-01%2F2022-05-01 ;        #artikel 4.1 woo
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 ;        #wet open overheid
+    wir:naderToegelicht wir:bestuursorgaan ;
+    wir:naderToegelicht wir:publiekeinfo ;
+    wir:naderToegelicht wir:verzoek ;
+    beg-sbb:BroaderGeneric wir:openbaarmaking .
+
+
+
+
+wir:verzoek
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Verzoek" ;
+    beg-sbb:Definition
+        "Een mondelinge of schriftelijke kennisgeving aan een bestuursorgaan om publieke informatie te ontvangen" ;
+    beg-sbb:Source lido:BWBR0045754%2F16045034%2F2022-05-01%2F2022-05-01 ;        #artikel 4.1 woo
+    wir:naderToegelicht wir:bestuursorgaan ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+
+
+wir:verzoeker
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Verzoeker" ;
+    beg-sbb:Definition
+        "De natuurlijke persoon die een verzoek heeft ingediend" ;
+    beg-sbb:Source lido:BWBR0045754%2F16045034%2F2022-05-01%2F2022-05-01 ;        #artikel 4.1 woo
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 ;        #wet open overheid
+    wir:naderToegelicht wir:verzoek .
+
+
+
+wir:beslissingverzoek
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Beslissing op een verzoek" ;
+    beg-sbb:Definition
+        "De mededeling van een bestuursorgaan aan de verzoeker of een verzoek wel of niet wordt ingewilligd" ;
+    beg-sbb:Source lido:BWBR0045754%2F16045054%2F2022-05-01%2F2022-05-01 ;        #artikel 4.3 woo
+    wir:naderToegelicht wir:bestuursorgaan ;
+    wir:naderToegelicht wir:verzoeker ;
+    wir:naderToegelicht wir:verzoek ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:persbeleidsopvatting
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Persoonlijke beleidsopvatting" ;
+    beg-sbb:Definition
+        "Persoonlijke beleidsopvattingen zijn ambtelijke adviezen, visies, standpunten en overwegingen ten behoeve van intern beraad, niet zijnde feiten, prognoses, beleidsalternatieven, de gevolgen van een bepaald beleidsalternatief of andere onderdelen met een overwegend objectief karakter." ;
+    beg-sbb:Source lido:BWBR0045754%2F16045114%2F2022-05-01%2F2022-05-01 ;        #artikel 5.2 woo 
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+ 
+
+
+wir:uitzondering
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Uitzondering" ;
+    beg-sbb:Definition
+        "Een situatie waarin het openbaar maken van informatie ingevolge deze wet achterwege blijft" ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:klemmendereden
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Klemmende reden" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0045754%2F16045164%2F2022-05-01%2F2022-05-01 ;        #artikel 5.6 woo
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:adviescollegeopeninfo
+    a beg-sbb:Concept ;
+    beg-sbb:Label "AdviesCollege openbaarheid en informatiehuishouding" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0045754%2F16046244%2F2022-05-01%2F2022-05-01 ;        #artikel 7.1 woo
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:strafbepaling
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Strafbepaling voor het overtreden van voorwaarden" ;
+    beg-sbb:Definition 
+        "Overtreding van een voorwaarde die op grond van artikel 5.5, vierde lid, artikel 5.6, derde lid of artikel 5.7 tweede of derde lid, aan een verstrekking is verbonden, wordt gestraft met gevangenisstraf van ten hoogste een jaar of geldboete van de vierde categorie." ;
+    beg-sbb:ScopeNote
+        "Het strafbaar gestelde feit is een misdrijf." ;
+    beg-sbb:Source lido:BWBR0045754%2F16045194%2F2022-05-01%2F2022-05-01 ;        #artikel 8.1 woo
+    wir:opGrondVan
+        lido:BWBR0045754%2F16045154%2F2022-05-01%2F2022-05-01 ,                   #artikel 5.5 woo
+        lido:BWBR0045754%2F16045164%2F2022-05-01%2F2022-05-01 ,                   #artikel 5.6 woo
+        lido:BWBR0045754%2F16045174%2F2022-05-01%2F2022-05-01 ;                   #artikel 5.7 woo
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+
+wir:beslissingopbezwaar
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Beslissing op bezwaar" ;
+    beg-sbb:AltLabel "BOB" ;
+    beg-sbb:Definition 
+        "Een beslissing van een bestuursorgaan naar aanleiding van een bezwaarschrift. Het bestuursorgaan kan met de BOB bij een gegrond bezwaar het bestreden besluit herroepen en zo nodig een nieuw besluit daarvoor in de plaats stellen." ;
+    beg-sbb:Source "https://wooincijfers.open-overheid.nl/footer/Definities" ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:bezwaar
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Bezwaar" ;
+    beg-sbb:Definition
+        "Bezwaar is protest van een belanghebbende tegen bepaald overheidshandelen. In de regel kan een belanghebbende bezwaar maken tegen een beslissing door een bezwaarschrift in te dienen bij de organisatie die de beslissing heeft genomen." ;
+    beg-sbb:Source "https://wooincijfers.open-overheid.nl/footer/Definities" ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:hotspot
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Hotspot" ;
+    beg-sbb:Definition
+        "Een of meerdere gebeurtenissen die een opvallende of intensieve interactie tussen overheid en burger of tussen burgers onderling veroorzaken, waarvan de informatie wordt opgenomen in een blijvend te bewaren hotspotdossier." ;
+    beg-sbb:Source "https://wooincijfers.open-overheid.nl/footer/Definities" ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:informatieobj
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Informatieobject" ;
+    beg-sbb:Definition 
+        "Een geheel van gegevens met een eigen identiteit: met een eigen naam of identificatiekenmerk." ;
+    beg-sbb:ScopeNote 
+        "In tegenstelling tot het meer gangbare begrip 'document' maakt het niet uit welke vorm een informatieobject aanneemt: papieren brieven, Word-documenten, e-mails, video's, tweets, websites en foto's." ;
+    beg-sbb:Source "https://wooincijfers.open-overheid.nl/footer/Definities" ;
+    beg-sbb:NarrowerGeneric wir:document ;
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:bezwaarntb
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Bezwaar Niet Tijdig Beslist" ;
+    beg-sbb:AltLabel
+        "NTB" ,
+        "beroep NTB" ;
+    beg-sbb:Definition 
+        "Niet tijdig beslist. Bezwaar- en beroepsprocedures die zijn ingesteld, omdat het bestuursorgaan het gevraagde besluit (nog) niet heeft genomen, terwijl de beslistermijn is verstreken." ;
+    beg-sbb:Source "https://wooincijfers.open-overheid.nl/footer/Definities" ;
+wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:opschorting
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Opschorting" ;
+    beg-sbb:Definition 
+        "Bij opschorting wordt de beslistermijn niet verlengd, maar onderbroken." ;
+    beg-sbb:ScopeNote "Opschorting vindt plaats wanneer een belanghebbende die naar verwachting bedenkingen heeft bij de beschikking van een Woo-verzoek de tijd krijgt om een zienswijze (reactie) naar voren te brengen. Ook kan de beslistermijn worden opgeschort wanneer een nadere omschrijving aan de verzoeker is gevraagd. Tot slot kan tijdens de afhandeling van een Woo-verzoek of een inhoudelijk bezwaarschrift een langere beslistermijn worden afgesproken en vastgelegd met de verzoeker." ;
+     beg-sbb:Source "https://wooincijfers.open-overheid.nl/footer/Definities" ;
+wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .        #wet open overheid
+
+
+wir:registerwoo
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Register" ;
+    beg-sbb:Definition
+        "het register van overheidsorganisaties als bedoeld in Stb. 1859, 50 " ;
+    beg-sbb:Source lido:BWBR0050243%2F2024-11-01%2F0 ;                      # is een regeling die nog aan de LiDO database moet toegevoegd worden
+    wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 .    #wet open overheid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wir:persoonsgegevens
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Persoonsgegevens" ;
+    wir:context [   wir:wetcontext lido:BWBR0045754%2F16045964%2F2024-08-01%2F2024-08-01 ;        #wet open overheid
+                    beg-sbb:Definition "Betreft als bedoeld in paragraaf 3.1 onderscheidenlijk paragraaf 3.2 van de Uitvoeringswet Algemene verordening gegevensbescherming, tenzij de betrokkene uitdrukkelijk toestemming heeft gegeven voor de openbaarmaking van deze persoonsgegevens of deze persoonsgegevens kennelijk door de betrokkene openbaar zijn gemaakt" ;
+                    beg-sbb:Source lido:BWBR0045754%2F16045104%2F2022-05-01%2F2022-05-01 ;        #artikel 5.1 woo
+                    wir:naderToegelicht
+                        lido:BWBR0040940%2F14570024%2F2018-05-25%2F2018-05-25 ,                   #paragraaf 3.1 AVG
+                        lido:BWBR0040940%2F14570064%2F2018-05-25%2F2018-05-25 ;                   #paragraaf 3.2 AVG
+                ] ,
+                [
+                    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 ;       #Uitvoeringswet AVG
+                    beg-sbb:Definition "alle informatie over een geïdentificeerde of identificeerbare natuurlijke persoon („de betrokkene”); als identificeerbaar wordt beschouwd een natuurlijke persoon die direct of indirect kan worden geïdentificeerd, met name aan de hand van een identificator zoals een naam, een identificatienummer, locatiegegevens, een online identificator of van een of meer elementen die kenmerkend zijn voor de fysieke, fysiologische, genetische, psychische, economische, culturele of sociale identiteit van die natuurlijke persoon" ;
+                    beg-sbb:Source eurlex:reg%2F2016%2F679%2Foj%2Feng;
+                ] .
+
+
+
+wir:bijzcatpersoon
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Bijzonder Categorie Persoonsgegevens" ;
+    beg-sbb:BroaderGeneric wir:persoonsgegevens ;
+    beg-sbb:Definition 
+        "de categorieën van persoonsgegevens, bedoeld in artikel 9, eerste lid, van de verordening" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569674%2F2018-05-25%2F2018-05-25 ;        #artikel 1 Uitvoeringswet AVG
+    wir:naderToegelicht lido:BWBR0040940%2F14569774%2F2018-05-25%2F2018-05-25 ;    #artikel 9 Uitvoeringswet AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .                      #Uitvoeringswet AVG
+
+
+wir:persoonstrafaard
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Persoonsgegevens van strafrechtelijke aard" ;    
+    beg-sbb:BroaderGeneric wir:persoonsgegevens ;
+    beg-sbb:Definition 
+        "persoonsgegevens betreffende strafrechtelijke veroordelingen en strafbare feiten of daarmee verband houdende veiligheidsmaatregelen als bedoeld in artikel 10 van de verordening, alsmede persoonsgegevens betreffende een door de rechter opgelegd verbod naar aanleiding van onrechtmatig of hinderlijk gedrag" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569674%2F2018-05-25%2F2018-05-25 ;        #artikel 1 Uitvoeringswet AVG
+    wir:naderToegelicht lido:BWBR0040940%2F14569784%2F2020-01-01%2F2020-01-01 ;    #artikel 10 Uitvoeringswet AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .                      #Uitvoeringswet AVG
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:verordening
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Verordening" ;
+    beg-sbb:Definition 
+        "" ;
+    beg-sbb:Source   "EU 2016 679";                                                       #identificatie van europese verordening (EU) 2016 679    
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .                      #Uitvoeringswet AVG
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:onderneming
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Onderneming" ;
+    beg-sbb:Definition 
+        "" ;
+    beg-sbb:BroaderGeneric 
+        wir:kleinonderneming ,
+        wir:middelonderneming ,
+        wir:microonderneming ;
+    beg-sbb:Source "" ;
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .  
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:kleinonderneming
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Kleine onderneming" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:NarrowerGeneric wir:onderneming ;
+    beg-sbb:Source lido:BWBR0040940%2F14569694%2F2018-05-25%2F2018-05-25 ;                    #artikel 2a AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:middelonderneming
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Middelgrote ondernemingen" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:NarrowerGeneric wir:onderneming ;
+    beg-sbb:Source lido:BWBR0040940%2F14569694%2F2018-05-25%2F2018-05-25 ;                    #artikel 2a AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:microonderneming
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Micro-onderneming" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:NarrowerGeneric wir:onderneming ;
+    beg-sbb:Source lido:BWBR0040940%2F14569694%2F2018-05-25%2F2018-05-25 ;                    #artikel 2a AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:verwerkingpersgegevens
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Verwerking van persoonsgegevens" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569704%2F2018-05-25%2F2018-05-25 ;                    #artikel 3 AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:betrokkene
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Betrokkene" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569714%2F2018-05-25%2F2018-05-25 ;                    #artikel 4 AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:wetvertegenwoordiger
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Wettelijke vertegenwoordiger" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569724%2F2018-05-25%2F2018-05-25 ;                    #artikel 5 AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:verwerkverantwoordelijke
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Verwerkingsverantwoordelijke" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569714%2F2018-05-25%2F2018-05-25 ;                    #artikel 4 AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:verwerker 
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Verwerker" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569714%2F2018-05-25%2F2018-05-25 ;                    #artikel 4 AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:toestemming
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Toestemming" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569724%2F2018-05-25%2F2018-05-25 ;                    #artikel 5 AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .
+
+
+wir:autoriteitpersgegevens
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Autoriteit Persoonsgegevens" ;
+    beg-sbb:Definition
+        "De Autoriteit Persoonsgegevens is de onafhankelijke toezichthouder in Nederland die zich sterk maakt voor het recht op bescherming van persoongegevens" ;
+    beg-sbb:Source lido:BWBR0040940%2F14569744%2F2018-05-25%2F2018-05-25 ;                    #artikel 6 AVG
+    wir:wetcontext lido:BWBR0040940%2F14570354%2F2021-07-01%2F2021-07-01 .    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wir:archief
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Archief" ;
+    beg-sbb:Definition
+        "Onder archief verstaan we het geheel van archiefbescheiden, ontvangen of opgemaakt door een organisatie, persoon of groep personen als resultaat van zelfstandige archiefvorming." ;
+    beg-sbb:ScopeNote
+        "Je kunt een archief zien als de neerslag van activiteiten en taken, rechten en verplichtingen." ;
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .         #archiefwet1995
+
+
+wir:archiefbescheiden
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Archiefbescheiden" ;
+    beg-sbb:Definition
+        "bescheiden, ongeacht hun vorm, die door de overheidsorganen ontvanen of opgemaakt zijn en naar hun aard bestemd daaronder te berusten" ;
+    beg-sbb:ScopeNote
+        "bescheiden, ongeacht hun vorm, met overeenkomstige bestemming, ontvangen of opgemaakt door instelling of personen, wier rechten of functies op enig overheidsorgaan zijn overgegaan" ,
+        "bescheiden, ongeacht hun vorm, welke ingevolge overeenkomsten met of beschikkingen van instellingen of personen dan wel uit andere hoofde in een archiefbewaarplaats zijn opgenomen om daar te berusten." ,
+        "reprodukties, ongeacht hun vorm, welke bij of krachtens de wet in de plaats zijn gesteld van eerder bedoelde archiefbescheiden of welke op grond van het bepaalde in artikel 7 zijn vervaardigd." ;
+    beg-sbb:Source lido:BWBR0007376%2F1214334%2F2004-02-13%2F2004-02-13 ;                     #artikel 1 archiefwet
+    wir:naderToegelicht wir:archiefbewaarplaats ;
+    wir:opGrondVan lido:BWBR0007376%2F1214404%2F2013-01-01%2F2013-01-01 .                     #artikel 7 archiefwet
+
+
+wir:archiefruimte
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Archiefruimte" ;
+    beg-sbb:Definition
+        "Archiefdepot bestemd voor de bewaring door de archiefvormer van recente archiefbescheiden" ;
+    beg-sbb:ScopeNote "Een archiefruimte is over het algemeen een ruimte voor de bewaring van archiefbescheiden. Organisaties gebruiken deze ruimte vooral voor archiefbescheiden die niet meer dagelijks gebruikt worden. Vaak zijn er voorzieningen om deze te beschermen tegen calamiteiten en te beveiligen tegen onbevoegd gebruik." ;    
+    beg-sbb:Source lido:BWBR0007376%2F1214334%2F2004-02-13%2F2004-02-13 ;                     #artikel 1 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:archiefbewaarplaats
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Archiefbewaarplaats" ;
+    beg-sbb:Definition 
+        "Archiefdepot of geheel van archiefdepots gebouwd en ingericht voor de bijvende bewaring van archiefbescheiden" ;
+    beg-sbb:ScopeNote 
+        "De organisatorische betekenis is een archiveringssysteem van de overheid voor blijvend te bewaren archiefbescheiden." ,
+        "De technische betekenis is de fysieke ruimte binnen de organisatie waar de archiefbeschieden, vaak in fysieke vorm, bewaard worden." ;
+    beg-sbb:Source lido:BWBR0007376%2F1214334%2F2004-02-13%2F2004-02-13 ;                     #artikel 1 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:hergebruik
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Hergebruik" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0007376%2F13177964%2F2015-07-18%2F2015-07-18 ;                    #artikel 2b archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:uitlening
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Uitlening" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0007376%2F1214514%2F2013-01-01%2F2013-01-01 ;                     #artikel 18 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:rijksarchiefdienst
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Rijksarchiefdienst" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0007376%2F1214594%2F2001-03-21%2F2001-03-21 ;                     #artikel 25 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:rijksarchivaris
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Rijksarchivaris" ;
+    beg-sbb:Definition
+        "Een rijksarchivaris beheert de rijksarchiefbewaarplaats van een provinciehoofdstad en moet in bezit zijn van een diploma Archivistiek." ;
+    beg-sbb:Source lido:BWBR0007376%2F1214594%2F2001-03-21%2F2001-03-21 ;                     #artikel 25 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:rijksarchiefplaats
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Rijksarchiefbewaarplaats" ;
+    beg-sbb:Definition
+        "Ruimte waarheen archiefbescheiden (van Rijksoverheidsorganen) ter blijvende bewaring zijn overgebracht en die voldoet aan de eisen als gesteld in de Regeling bouw en inrichting van archiefruimten en archiefbewaarplaatsen." ;
+    beg-sbb:Source lido:BWBR0007376%2F1214604%2F2013-01-01%2F2013-01-01 ;                     #artikel 26 archiefwet
+    beg-sbb:BroaderGeneric wir:archiefbewaarplaats ;
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:provinarchiefplaats
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Provinciale Archiefbewaarplaats" ;
+    beg-sbb:Definition
+        "Archiefbewaarplaats bedoeld voor de archiefbescheiden van de provinciale organen" ;
+    beg-sbb:Source lido:BWBR0007376%2F1214644%2F2020-01-01%2F2020-01-01 ;                     #artikel 29 archiefwet
+    beg-sbb:BroaderGeneric wir:archiefbewaarplaats ;
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:provinarchivaris
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Provinciearchivaris" ;
+    beg-sbb:Definition
+        "De provinciearchivaris beheert de provinciale archiefbewaarplaats en houdt toezicht op de naleving van de wettelijke regels voor het beheer van de niet-overgebrachte provinciale archieven" ;
+    beg-sbb:Source lido:BWBR0007376%2F1214644%2F2020-01-01%2F2020-01-01 ;                     #artikel 29 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:gemeentearchiefplaats
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Gemeentelijke archiefbewaarplaats" ;
+    beg-sbb:Definition
+        "Archiefbewaarplaats bedoeld voor de archiefbescheiden van de gemeentelijke organen" ;
+    beg-sbb:Source lido:BWBR0007376%2F1214664%2F1998-01-01%2F1998-01-01 ;                     #artikel 30 archiefwet
+    beg-sbb:BroaderGeneric wir:archiefbewaarplaats ;
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:gemeentearchivaris
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Gemeente archivaris" ;
+    beg-sbb:Definition
+        "De gemeentearchivaris beheert de gemeentelijke archiefbewaarplaats en houdt toezicht op de naleving van wettelijke regels voor het beheer van de niet-overgebrachte gemeentearchieven." ;
+    beg-sbb:Source lido:BWBR0007376%2F1214684%2F2020-01-01%2F2020-01-01 ;                     #artikel 32 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                     #archiefwet1995
+
+
+wir:waterarchiefplaats
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Waterschapsarchiefbewaarplaats" ;
+    beg-sbb:Definition
+        "Archiefbewaarplaats bedoeld voor de archiefbescheiden van de organen van het waterschap" ;
+    beg-sbb:Source lido:BWBR0007376%2F1214724%2F1998-01-01%2F1998-01-01 ;                      #artikel 35 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                      #archiefwet1995
+
+
+########################################
+#Definitie moet nog gecontroleerd worden
+
+wir:waterarchivaris
+    a beg-sbb:Concept ;
+    beg-sbb:Label "Waterschapsarchivaris" ;
+    beg-sbb:Definition
+        "" ;
+    beg-sbb:Source lido:BWBR0007376%2F1214744%2F2020-01-01%2F2020-01-01 ;                       #artikel 37 archiefwet
+    wir:wetcontext lido:BWBR0007376%2F1215304%2F2024-06-19%2F2024-06-19 .                       #archiefwet1995
