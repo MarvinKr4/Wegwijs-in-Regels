@@ -1,88 +1,14 @@
-# Wegwijs-in-Regels
+# Wegwijs in Regels
 
-<pre>
-┌────────────────────────────────────────────────────────────────────────┐
-│     _____                                                              │
-│ ___|__  _|__  ______  ______  __  __  __  ____    ____  ______         │
-│|  \/  \|  | ||   ___||   ___||  \/  \|  ||    |  |    ||   ___|        │
-│|     /\   | ||   ___||   |  ||     /\   ||    | _|    | `-.`-.         │
-│|____/  \__|_||______||______||____/  \__||____||______||______|        │
-│    |_____|            _____                                            │
-│  ____  ____   _    __|__   |__  ______  ______  ______  ____    ______ │
-│ |    ||    \ | |  |     |     ||   ___||   ___||   ___||    |  |   ___|│
-│ |    ||     \| |  |     \     ||   ___||   |  ||   ___||    |_  `-.`-. │
-│ |____||__/\____|  |__|\__\  __||______||______||______||______||______|│
-│                      |_____|                                           │
-└────────────────────────────────────────────────────────────────────────┘
-</pre>
+Wegwijs in Regels is an AI-powered assistant designed to help government workers in the Netherlands interact with structured law information. The system provides access to laws pertaining to openness, GDPR, and archiving, along with related case law, selectielijsten (Dutch archiving standards), and work instructions.
 
-20251019 - MK    
-  
-Hey, fijn dat jullie meelezen (en ook hopelijk wat er mee kunnen)! 
-deze readme geeft globaal aan wat we hebben gedaan de afgelopen tijd. 
-Repo wordt nog verder gevuld!
+## Documentation
 
-**Wat zagen we voordat we begonnen?**
+For detailed documentation, please refer to the following:
 
-Generatieve AI kan helpen bij het beantwoorden van vragen maar is niet betrouwbaar genoeg. 
-Dit project onderzocht of knowledge graphs in combinatie met RAG-technieken de betrouwbaarheid 
-en herleidbaarheid van AI-antwoorden over informatie-materiewetten verbeteren: en dat kan!
+- [Architecture Overview](docs/architecture.md)
+- [Installation Guide](docs/installation.md)
 
-**Wat houdt het project in?**
+## License
 
-De overheid moet informatie goed beheren volgens wetten als de Woo, AVG en Archiefwet, 
-maar die zijn complex voor zowel burgers als professionals. 
-Generatieve AI zoals ChatGPT kan helpen bij het beantwoorden van vragen, 
-maar geeft niet altijd betrouwbare antwoorden ( “hallucineren”). 
-Dit project onderzocht of knowledge graphs in combinatie met RAG-technieken 
-de betrouwbaarheid en herleidbaarheid van AI-antwoorden over deze informatiewetten kunnen verbeteren.
-
-**Wat is het resultaat van dit project?**
-
-Het onderzoek toont aan dat het gebruik van knowledge graphs, 
-in plaats van een centraal LLM-model, 
-de kwaliteit en herleidbaarheid van antwoorden aanzienlijk verbetert. 
-De Wegwijs in Regels-assistent leverde antwoorden met duidelijke bronvermeldingen 
-en op basis van gecureerde informatie. 
-Daarnaast verbeterden de knowledge graphs de gebruikservaring, 
-onder meer door contextafhankelijke definities en verwijzingen 
-tussen wetsartikelen via de LiDO-database (KOOP). 
-
-Tot slot biedt het project kansen voor doorontwikkeling, 
-zoals het toevoegen van meer graphs, 
-beter gebruik van contextuele gegevens en inzet van 
-juridische metamodellen zoals JRM of FLINT.
-
-**Wat denken we opgelost te hebben?**
-
-Generatieve AI kan veel werk uit handen nemen maar het beschrijven of ondersteunen 
-richting primaire taken waarin feitelijkheid prevaleert kan dit uitdagend zijn. 
-Dit onderzoek en bijbehorende innovatie is een puzzelstukje om dit proces 
-meer transparant en “begrijpelijk” te maken om modellen on 
-de toekomst te kunnen voorzien van juiste informatie. 
-
-**Hoe is dit aangepakt?**
-
-Het project onderzocht hoe AI betrouwbaar kan worden ingezet 
-om wet- en regelgeving te bevragen en interpreteren, 
-met nadruk op gebruik van open standaarden en kennis van eindgebruikers. 
-De methodologie bestond uit deskresearch naar bestaande AI- 
-en knowledge-graph-initiatieven, gebruikersonderzoek met interviews en testsessies, 
-en iteratieve ontwikkeling van de user interface op basis van ‘user stories’. 
-
-Technologisch werd gewerkt met drie gekoppelde knowledge graphs 
-(begrippen, wetsannotaties en database-verwijzingen), 
-een dubbele zoekpipeline voor transparante informatieopvraging, 
-en een LLM dat antwoorden genereerde met duidelijke bronverwijzingen.
-Er wordt nog gewerkt aan deze omgeving te incorpereren in 
-de alfa-versie vd "Werkomgeving van de Toekomst" -> alle hulp is welkom 
-
-**overig**
-
-De code volgt asap (python), sawwy :x 
-
-in de docs-sectie staan de deliverables. 
-
-er komt nog een  animatie - want *een plaatje zegt meer dan duizend woorden, en een filmpje zegt meer dan duizend plaatjes..* (oid)
-
-meer info en vragen: marvin.kramer@minbzk.nl 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
