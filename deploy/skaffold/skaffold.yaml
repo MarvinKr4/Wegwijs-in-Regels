@@ -1,0 +1,52 @@
+apiVersion: skaffold/v2beta28
+kind: Config
+build:
+  local:
+    push: false
+    useBuildkit: true
+  artifacts:
+  - context: components/frontend
+    docker:
+      network: host
+      ssh: default
+    image: frontend
+    sync:
+      infer:
+      - '**/*.py'
+  - context: components/api
+    docker:
+      network: host
+      ssh: default
+    image: api
+    sync:
+      infer:
+      - '**/*.py'
+profiles:
+- name: dev
+  deploy:
+    helm:
+      flags:
+        install:
+        - --dependency-update
+        - --timeout=120m
+      releases:
+      - name: wegwijs
+        upgradeOnChange: true
+        # recreatePods: false
+        chartPath: "deploy/helm"
+        # imageStrategy:
+        #   helm:
+        #     explicitRegistry: true
+        valuesFiles:
+        - deploy/helm/values.yaml
+        - deploy/skaffold/values.yaml
+        - deploy/skaffold/secret-values.yaml
+        skipBuildDependencies: true
+        setValueTemplates:
+          api.image.repository: "{{.IMAGE_REPO_api}}"
+          api.image.tag: "{{.IMAGE_TAG_api}}@{{.IMAGE_DIGEST_api}}"
+          frontend.image.repository: "{{.IMAGE_REPO_frontend}}"
+          frontend.image.tag: "{{.IMAGE_TAG_frontend}}@{{.IMAGE_DIGEST_frontend}}"
+        setValues:
+          api.image.pullPolicy: IfNotPresent
+          frontend.image.pullPolicy: IfNotPresent
