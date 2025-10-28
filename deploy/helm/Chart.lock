@@ -1,0 +1,9 @@
+dependencies:
+- name: elasticsearch
+  repository: https://charts.bitnami.com/bitnami
+  version: 21.3.22
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 16.1.0
+digest: sha256:91d566b6b47e59194ec4a940472b4529de5ec752c7017490a4bdd2016aa06bc7
+generated: "2024-10-31T15:47:57.46880754+01:00"

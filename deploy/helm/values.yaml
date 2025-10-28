@@ -1,0 +1,76 @@
+# Default values for wegwijs.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Determines if the cluster is run on a local machine, or on a cloud provider.
+skaffold: false
+
+imageTag: &tag 0.1.0
+
+frontend:
+  image:
+    # tag: *tag
+    repository: frontend
+    pullPolicy: IfNotPresent # default PullPolicy
+
+api:
+  image:
+    # tag: *tag
+    repository: api
+    pullPolicy: IfNotPresent # default PullPolicy
+  # azure specific config
+  llm:
+    gpt:
+      deploymentName: gpt-4o-mini
+      apiVersion: 2024-08-01-preview
+      endpoint: your_gpt_endpoint # <-- REPLACE ME
+    embeddings:
+      modelName: text-embedding-3-large
+      apiVersion: "2024-09-01-preview"
+      endpoint: your_gpt4_endpoint # <-- REPLACE ME
+  env:
+    - name: GRAPHDB_URL
+      value: "http://fuseki-service:3030"
+  ingest:
+    fromLocal: true
+
+fuseki:
+  adminPassword: admin123
+  image:
+    repository: stain/jena-fuseki
+    tag: 5.1.0
+    pullPolicy: IfNotPresent
+
+postgresql:
+  enabled: true
+  # when changing auth, change it also in alembic.ini
+  auth:
+    username: user
+    password: password
+  postgresPassword: password
+
+elasticsearch:
+  enabled: true
+  master:
+    masterOnly: false # <-- required otherwise indexes never get green
+    autoscaling:
+      enabled: false
+    replicaCount: 1
+    heapSize: 1024m
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "256"
+      limits:
+        memory: "4Gi"
+  ingest:
+    enabled: false
+    replicaCount: 0
+  data:
+    autoscaling:
+      enabled: false
+    replicaCount: 0
+  coordinating:
+    autoscaling:
+      enabled: false
+    replicaCount: 0
