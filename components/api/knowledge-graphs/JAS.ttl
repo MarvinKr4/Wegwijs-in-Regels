@@ -1,0 +1,365 @@
+@prefix lex:        <http://y.digital/graph/v1/lexicon/> .
+@prefix rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:       <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:        <http://www.w3.org/2002/07/owl#> .
+@prefix overheidrl: <http://www.linkeddata.overheid.nl/terms/> .
+@prefix lido:       <http://linkeddata.overheid.nl/terms/bwb/id#> .
+@prefix skos:       <http://www.w3.org/2004/02/skos/core#> .
+@prefix jas:        <http://www.y.digital/graph/v1/jas/> .           # moet nog bepaald worden waar gehost wordt
+@prefix eurolex:     <https://eur-lex.europa.eu/eli/reg/> .
+
+
+
+
+lex:entiteit a rdf:Class .
+
+
+
+jas:rechtsobject 
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+jas:rechtssubject 
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+jas:rechtsbetrekkingverplichting 
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+jas:rechtsbetrekkingaanspraak
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+jas:rechtsbetrekkingbevoegdheid
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+jas:voorwaarde 
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range  lex:entiteit .
+
+
+
+jas:rechtsfeit 
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+jas:variabele 
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+jas:orgArtikel
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+jas:operator
+    a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:entiteit .
+
+
+
+lex:heeftArtikel 
+    a rdf:Property ;
+    rdfs:domain overheidrl:Wet ;
+    rdfs:range overheidrl:Artikel .
+
+
+lex:heeftLid a rdf:Property ;
+    rdfs:domain overheidrl:Artikel ;
+    rdfs:range lex:wetslid .
+
+
+
+lex:wetsoorsprong a rdf:Property ;
+    rdfs:domain [
+        a owl:Class ;
+        owl:unionOf (lex:rechtsbetrekking lex:voorwaarde)
+    ] ;
+    rdfs:range [
+        a owl:Class ;
+        owl:unionOf (lex:wet lex:wetsartikel lex:wetslid)
+    ] .
+
+
+jas:archiefart3
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0007376%2F1214364%2F1996-01-01%2F1996-01-01 ;
+    jas:rechtssubject "De overheidsorganen" ;
+    jas:rechtsbetrekkingverplichting 
+        "zijn verplicht de odner hen berustende archiefbescheiden in goede, geordende en toegankelijke staat te brengen en te bewaren" ,
+        "zijn verplicht zorg te dragen voor de vernietiging van de daarvoor in aanmerking komende archiefbescheiden" ;
+    jas:rechtsobject "de onder hen berustende archiefbescheiden" ;
+    jas:voorwaarde "de daarvoor in aanmerking komende" ;
+    jas:rechtsfeit "de vernietiging" .
+
+
+
+jas:archiefart5lid1
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0007376%2F1214384%2F2013-01-01%2F2013-01-01 ;
+    jas:rechtssubject "De zorgdrager" ;
+    jas:rechtsbetrekkingverplichting "is verplicht tot het ontwerpen van selectielijsten waarin tenminste wordt aangegeven welke archiefbescheiden voor vernietiging in aanmerking komen" ;
+    jas:rechtsobject 
+        "selectielijsten" ,
+        "archiefbescheiden" ;
+    jas:voorwaarde "waarin tenminste wordt aangegeven... in aanmerking komen" ;
+    jas:rechtsfeit "het ontwerpen van selectielijsten" .
+
+
+
+jas:archiefart12lid1
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0007376%2F1214454%2F1996-01-01%2F1996-01-01 ;
+    jas:rechtssubject "De zorgdrager" ;
+    jas:rechtsbetrekkingverplichting "brengt de archiefbescheiden die niet voor vernietiging in aanmerking komen en ouder zijn dan twintig jaar over naar een archiefbewaarplaats" ;
+    jas:rechtsobject "de archiefbescheiden" ;
+    jas:voorwaarde
+        "die niet voor vernietiging in aanmerking komen",
+        "die... ouder zijn dan twintig jaar" .   
+
+
+    
+jas:wooart4-1lid1
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0045754%2F16045034%2F2022-05-01%2F2022-05-01 ;
+    jas:rechtssubject 
+        "Een ieder" ,
+        "een bestuursorgaan" ,
+        "onder verantwoordelijkheid van een bestuursorgaan werkzame instelling, dienst of bedrijf" ,
+        "het verantwoordelijke bestuursorgaan" ;
+    jas:rechtsbetrekkingaanspraak "kan een verzoek om publieke informatie richten tot een bestuursorgaan of een onder verantwoordelijkeheid van een bestuursorgaan werkzame instelling, dienst of bedrijf" ;
+    jas:rechtsbetrekkingverplichting "in het laatste geval beslist het verantwoordelijke bestuursorgaan op het verzoek" ;
+    jas:rechtsobject 
+        "een verzoek om publieke informatie" ,
+        "het verzoek" .
+
+
+
+
+jas:wooart4-1a 
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0045754%2F16046094%2F2022-05-01%2F2022-05-01 ;
+    jas:rechtssubject "het bestuursorgaan" ;
+    jas:rechtsbetrekkingverplichting "waarborgt het behoud van de documenten waarop een door hem ontvangen verzoek betrekking heeft" ;
+    jas:rechtsobject 
+        "de documenten waarop een door hem ontvangen verzoek betrekking heeft" ,
+        "verzoek" ;
+    jas:variabele "waarop ... betrekking heeft" .
+
+
+
+
+jas:wooart4-4lid1
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0045754%2F16045064%2F2022-05-01%2F2022-05-01 ;
+    jas:rechtssubject "het bestuursorgaan" ;
+    jas:rechtsbetrekkingverplichting "beslist op het verzoek om infomratie zo spoedig mogelijk, doch uiterlijk binnen vier weken gerekend vanaf de dag na die waarop het verzoek is ontvangen" ;
+    jas:rechtsfeit "het verzoek is ontvangen" ;
+    jas:voorwaarde "zo spoedig mogelijk, doch uiterlijk binnen vier weken gerekend vanaf de dag na die waarop het verzoek is ontvangen" .
+
+
+
+jas:wooart4-4lid2
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0045754%2F16045064%2F2022-05-01%2F2022-05-01 ;
+    jas:rechtsbetrekkingbevoegdheid "kan de beslissing voor ten hoogste twee weken verdagen, indien de omvang of de gecompliceerdheid van de informatie een verlenging rechtvaardigt" ;
+    jas:rechtsobject
+        "de beslissing" ,
+        "de informatie" ;
+    jas:voorwaarde "indien de omvang... rechtvaardigt" .
+
+
+
+jas:wooart4-5
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0045754%2F16045074%2F2022-05-01%2F2022-05-01 ;
+    jas:rechtssubject "het bestuursorgaan" ;
+    jas:rechtsbetrekkingverplichting "verstrekt de informatie in de door verzoeker verzochte vorm of, indien dit redelijkerwijs niet gevergd kan worden, met inachtneming van het bepaalde in artikel 2.4, derde lid" ;
+    jas:rechtsobject "de informatie" ;
+    jas:voorwaarde "indien dit redelijkerwijs niet gevergd kan worden, met inachtneming... " ;
+    jas:variabele 
+        "in de door de verzoeker verzochte vorm" ,
+        "met inachtneming..." .
+
+
+
+jas:avgart5deela
+    a skos:concept ;
+    jas:orgArtikel eurolex:2016%2F679%2Fart_5 ;
+    jas:rechtsbetrekkingverplichting "persoonsgegevens moeten verwerkt op een wijze..." ;
+    jas:rechtsobject "de betrokkene" ;
+    jas:voorwaarde "op een wijze die ten aanzien van de betrokkene... is" ;
+    jas:variabele
+        "rechtmatige" ,
+        "behoorlijke" ,
+        "transparant" .
+
+
+
+jas:avgart5deelb
+    a skos:concept ;
+    jas:orgArtikel eurolex:2016%2F679%2Fart_5 ;
+    jas:rechtsbetrekkingverplichting
+        "persoonsgegevens moeten voor welbepaalde, uitdrukkelijk omschreven en... verzameld" ,
+        "persoonsgegevens mogen vervolgens niet verder... verwerkt" ;
+    jas:rechtsobject "de verdere verwerking" ;
+    jas:voorwaarde 
+        "voor welbepaalde, uitdrukkelijk omschreven en gerechtvaardigde doeleinden" ,
+        "niet verder op een met die doeleinden onverenigbare wijze" ,
+        "overeenkomstig artikel 89, lid 1" ;
+    jas:variabele
+        "welbepaalde, uitdrukkelijk omschreven en gerechtvaardigde doeleinden" ,
+        "met die doeleinden onverenigbare wijze" , 
+        "niet onverenigbaar met de oorspronkelijke doeleinden" ,
+        "archivering in het algmeen belang, wetenschappelijk of historisch onderzoek of statistische doeleinden" .
+
+
+
+jas:avgart6
+    a skos:concept ;
+    jas:orgArtikel eurolex:2016%2F679%2Fart_6 ;
+    jas:rechtssubject "verwerkingsverantwoordelijke" ;
+    jas:rechtsobject 
+        "een wettelijke verplichting" ,
+        "de vervulling van een taak van algemeen belang" ,
+        "een taak van algemeen belang" ;
+    jas:voorwaarde
+        "indien en voor zover aan ten minste een van de onderstaande voorwaarden is voldaan" ,
+        "de verwerking is noodzakelijk om te voldoen aan... rust" ,
+        "de verwerking is noodzakelijk voor de vervulling... is opgedragen" ,
+        "dat aan de verwerkingsverantwoordelijke is opgedragen" ;
+    jas:variabele 
+        "alleen rechtmatig" ,
+        "noodzakelijk om te voldoen aan een wettelijke verplichting" ,
+        "die op de verwerkingsverantwoordelijke rust" ,
+        "noodzakelijk voor de vervulling van een taak van algemeen belang",
+        "noodzakelijk voor vervulling van een taak in het kader van de uitoefening van openbaar gezag" .
+
+jas:avgart89
+    a skos:concept ;
+    jas:orgArtikel eurolex:2016%2F679%2Fart_89 ;
+    jas:rechtsbetrekkingverplichting "is onderworpen" ;
+    jas:rechtsfeit "de verwerking met het oog op archivering in het algemeen belang, wetenschappelijk of historisch onderzoek of statistische doeleinden" ;
+    jas:rechtsobject "passende waarborgen voor de rechten en vrijheden van de betrokkene" ;
+    jas:voorwaarde "in overeenstemming met deze verordening " .
+
+
+jas:uavgart45lid1
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0040940%2F14570214%2F2018-05-25%2F2018-05-25 ;
+    jas:rechtsfeit "zijn … niet van toepassing" ;
+    jas:rechtsobject "de artikelen 15, 16, 18, eerste lid, onderdeel a, en 20 van de verordening" ;
+    jas:voorwaarde 
+        "bij de verwerking van persoonsgegevens die deel uitmaken van … als bedoeld in … Archiefwet 1995",
+        "die berusten in een archiefbewaarplaats als bedoeld in artikel 1, onderdeel f, van die wet" .
+
+
+jas:uavgart45lid2
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0040940%2F14570214%2F2018-05-25%2F2018-05-25 ;
+    jas:rechtsbetrekking "heeft het recht om inzage te verkrijgen" ;
+    jas:rechtssubject "betrokkene" ;
+    jas:rechtsobject 
+        "in de archiefbescheiden",
+        "verzoeken om inzage" ;
+    jas:voorwaarde 
+        "tenzij verzoeken om inzage zodanig ongericht zijn dat deze in redelijkheid niet kunnen worden ingewilligd" ;
+    jas:rechtsfeit "in redelijkheid" ;
+    jas:variabele 
+        "niet kunnen worden ingewilligd",
+        "zodanig ongericht" . 
+
+jas:uavgart45lid3
+    a skos:concept ;
+    jas:rechtsbetrekking "heeft het recht om (…) toe te voegen" ;
+    jas:rechtssubject "betrokkene" ;
+    jas:rechtsobject 
+        "zijn eigen lezing",
+        "de desbetreffende archiefbescheiden",
+        "aan de desbetreffende archiefbescheiden" ;
+    jas:voorwaarde "In geval van onjuiste persoonsgegevens" ;
+    jas:variabele "Onjuiste persoonsgegevens" .
+
+jas:uavgart41 
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0040940%2F14570174%2F2018-05-25%2F2018-05-25 ;
+    jas:rechtsbetrekking "kan... buiten toepassing laten" ;
+    jas:rechtssubject "de verwerkingsverantwoordelijke" ;
+    jas:rechtsobject "de verplichtingen en rechten, bedoeld in de artikelen 12 tot en met 21 en artikel 34 van de verordening" ;
+    jas:voorwaarde 
+        "voor zover zulks noodzakelijk en evenredig is ter waarborging van",
+        "in de gevallen, bedoeld in de onderdelen a, b, c, d, e en g",
+        "al is het incidenteel" ;
+    jas:variabele 
+        "e. andere belangrijke doelstellingen van algemeen belang van de europese unie",
+        "andere belangrijke doelstellingen van algemeen belang van nederland",
+        "h. een taak op het gebied van toezicht, inspectie of regelgeving die verband houdt met de uitoefening van openbaar gezag" ;
+    jas:operator "met inbegrip" .
+
+jas:uavgart43lid1 
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0040940%2F14570194%2F2018-05-25%2F2018-05-25 ;
+    jas:rechtsfeit "deze wet met uitzondering van de artikelen 1 tot en met 4 en 5, eerste en tweede lid is niet van toepassing op de verwerking van persoonsgegevens" ;
+    jas:rechtsobject "deze wet met uitzondering van de artikelen 1 tot en met 4 en 5, eerste en tweede lid" ;
+    jas:voorwaarde "voor uitsluitend journalistieke doeleinden" ;
+    jas:variabele 
+        "voor uitsluitend journalistieke doeleinden",
+        "ten behoeve van uitsluitend academische, artistieke of literaire uitdrukkingsvormen" ;
+    jas:operator "en" .
+
+
+jas:uavgart43lid2 
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0040940%2F14570194%2F2018-05-25%2F2018-05-25 ;
+    jas:rechtsfeit "de navolgende hoofdstukken en artikelen van de verordening zijn niet van toepassing op de verwerking van persoonsgegevens" ;
+    jas:voorwaarde "voor uitsluitend journalistieke doeleinden en ten behoeve van academische, artistieke of literaire uitdrukkingsvormen" ;
+    jas:variabele 
+        "voor uitsluitend journalistieke doeleinden",
+        "ten behoeve van academische, artistieke of literaire uitdrukkingsvormen" ;
+    jas:operator "en" .
+
+
+jas:uavgart43lid2 
+    a skos:concept ;
+    jas:orgArtikel lido:BWBR0040940%2F14570194%2F2018-05-25%2F2018-05-25 ;
+    jas:rechtsfeit "de artikelen 9 en 10 van de verordening zijn niet van toepassing" ;
+    jas:voorwaarde "voor zover de verwerking van de in die artikelen bedoelde gegevens noodzakelijk is voor het journalistieke doel of de academische, artistieke of literaire uitdrukkingsvorm" ;
+    jas:operator "of", "of" ;
+    jas:variabele
+        "noodzakelijk is voor het journalistieke doel",
+        "de academische uitdrukkingsvorm",
+        "de artistieke uitdrukkingsvorm",
+        "de literaire uitdrukkingsvorm" .
+
+
+
+
+
+
+
