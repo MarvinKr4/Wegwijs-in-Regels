@@ -1,0 +1,23 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+{{- if $.Values.skaffold }}
+metadata:
+  name: local-storage
+provisioner: microk8s.io/hostpath
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+{{- else }}
+metadata:
+  name: azure-disk-lrs
+provisioner: kubernetes.io/azure-file
+mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=1000
+  - gid=1000
+  - mfsymlinks
+  - cache=strict
+  - actimeo=30
+parameters:
+  skuName: Standard_LRS
+{{- end }}
